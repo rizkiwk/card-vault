@@ -29,16 +29,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    // Keep native debug symbols in the bundle instead of stripping them at
-    // build time. This avoids the toolchain-dependent strip step (which needs
-    // an NDK version match) and lets symbols be uploaded to Play separately for
-    // crash de-obfuscation.
-    packaging {
-        jniLibs {
-            keepDebugSymbols.add("**/*.so")
-        }
-    }
-
     defaultConfig {
         applicationId = "com.cardvault.card_vault"
         minSdk = flutter.minSdkVersion

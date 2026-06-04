@@ -96,12 +96,16 @@ flutter test
 * `image` package handles compression/thumbnailing off the UI isolate via
   `compute`.
 
-### Remaining before Play submission (manual)
-1. **Bump `targetSdk` to 35** (Google Play 2025 requirement) — currently inherits
-   Flutter default.
-2. Add a real release **signing config** + build an **app bundle**
-   (`flutter build appbundle --release`).
-3. Produce store screenshots, feature graphic, privacy policy URL.
-4. Complete the Data Safety form ("no data collected/shared").
-5. Work through [07-qa-checklist](07-qa-checklist.md) and
+### Release packaging — ✅ done (see [10-release-guide](10-release-guide.md))
+* `targetSdk = 35`, `compileSdk = 36`, R8 minify + resource shrink, ProGuard rules.
+* Conditional signing config (`key.properties` → real upload key, else debug).
+* **`flutter build appbundle --release` exits 0 → app-release.aab (58.8 MB).**
+* Strip verification requires `cmdline-tools/apkanalyzer` + accepted licenses
+  (installed; documented in the release guide).
+
+### Remaining before Play submission (manual, no code)
+1. Create the upload keystore + `android/key.properties` (steps in the guide).
+2. Store screenshots, feature graphic, privacy policy URL.
+3. Data Safety form ("no data collected/shared") + content rating.
+4. Work through [07-qa-checklist](07-qa-checklist.md) and
    [08-google-play-compliance](08-google-play-compliance.md).

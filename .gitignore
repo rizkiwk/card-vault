@@ -53,9 +53,7 @@ android/key.properties
 *.keystore
 SECRETS.md
 
-# Screenshot raw captures (temp from emulator)
-docs/screenshot/raw/
-
-# Tool scripts — internal only, not for public repo
-tool/crop_shots.dart
-tool/update_screenshot_card_art.dart
+# Internal folders — docs, tests, and tools are kept local only
+docs/
+test/
+tool/

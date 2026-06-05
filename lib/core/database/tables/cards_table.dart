@@ -14,8 +14,7 @@ import 'sets_table.dart';
 class CardRows extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get gameId => integer().references(Games, #id)();
-  IntColumn get setId =>
-      integer().nullable().references(CardSets, #id)();
+  IntColumn get setId => integer().nullable().references(CardSets, #id)();
 
   TextColumn get name => text().withLength(min: 1, max: 200)();
   TextColumn get cardNumber => text().nullable()();

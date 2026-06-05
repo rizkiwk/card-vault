@@ -48,8 +48,7 @@ class AddCardController extends AutoDisposeAsyncNotifier<void> {
     state = const AsyncLoading();
     final result = await ref.read(updateCardProvider).call(card);
     result.fold(
-      (failure) =>
-          state = AsyncError(failure.message, StackTrace.current),
+      (failure) => state = AsyncError(failure.message, StackTrace.current),
       (_) => state = const AsyncData(null),
     );
   }
@@ -57,4 +56,5 @@ class AddCardController extends AutoDisposeAsyncNotifier<void> {
 
 final addCardControllerProvider =
     AutoDisposeAsyncNotifierProvider<AddCardController, void>(
-        AddCardController.new,);
+  AddCardController.new,
+);

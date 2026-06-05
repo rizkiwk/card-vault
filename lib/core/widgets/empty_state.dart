@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_colors.dart';
+
 /// Friendly placeholder shown when a list has no items.
 class EmptyState extends StatelessWidget {
   const EmptyState({
@@ -24,8 +26,16 @@ class EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 64, color: theme.colorScheme.outline),
-            const SizedBox(height: 16),
+            Container(
+              width: 88,
+              height: 88,
+              decoration: const BoxDecoration(
+                gradient: AppColors.primaryGradient,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, size: 40, color: Colors.white),
+            ),
+            const SizedBox(height: 20),
             Text(title, style: theme.textTheme.titleMedium),
             if (message != null) ...[
               const SizedBox(height: 8),

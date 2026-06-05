@@ -41,7 +41,9 @@ class ValueBarChart extends StatelessWidget {
                 showTitles: true,
                 getTitlesWidget: (value, _) {
                   final i = value.toInt();
-                  if (i < 0 || i >= games.length) return const SizedBox.shrink();
+                  if (i < 0 || i >= games.length) {
+                    return const SizedBox.shrink();
+                  }
                   // Short code, e.g. "PKM".
                   final label = games[i].code.substring(0, 3).toUpperCase();
                   return Padding(

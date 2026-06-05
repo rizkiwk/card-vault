@@ -24,11 +24,13 @@ class TagLocalDataSource {
   }
 
   Future<int> insert(String name, String? color) {
-    return _db.into(_db.tags).insert(TagsCompanion.insert(
-          name: name,
-          color: Value(color),
-          createdAt: DateTime.now().millisecondsSinceEpoch,
-        ),);
+    return _db.into(_db.tags).insert(
+          TagsCompanion.insert(
+            name: name,
+            color: Value(color),
+            createdAt: DateTime.now().millisecondsSinceEpoch,
+          ),
+        );
   }
 
   Future<void> rename(int id, String name) {

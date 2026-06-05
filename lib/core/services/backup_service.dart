@@ -31,7 +31,8 @@ class BackupService {
 
     // Add the JSON manifest.
     final jsonBytes = utf8.encode(jsonEncode(data));
-    encoder.addArchiveFile(ArchiveFile(_jsonEntry, jsonBytes.length, jsonBytes));
+    encoder
+        .addArchiveFile(ArchiveFile(_jsonEntry, jsonBytes.length, jsonBytes));
 
     // Add each image file under images/<basename>.
     for (final img in (data['images'] as List)) {

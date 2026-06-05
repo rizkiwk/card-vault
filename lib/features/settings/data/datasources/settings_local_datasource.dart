@@ -47,14 +47,16 @@ class SettingsLocalDataSource {
       'version': 1,
       'games': games.map((g) => {'id': g.id, 'code': g.code}).toList(),
       'sets': sets
-          .map((s) => {
-                'id': s.id,
-                'gameId': s.gameId,
-                'name': s.name,
-                'code': s.code,
-                'releaseYear': s.releaseYear,
-                'totalCards': s.totalCards,
-              },)
+          .map(
+            (s) => {
+              'id': s.id,
+              'gameId': s.gameId,
+              'name': s.name,
+              'code': s.code,
+              'releaseYear': s.releaseYear,
+              'totalCards': s.totalCards,
+            },
+          )
           .toList(),
       'tags': tags
           .map((t) => {'id': t.id, 'name': t.name, 'color': t.color})
@@ -64,12 +66,14 @@ class SettingsLocalDataSource {
           .map((ct) => {'cardId': ct.cardId, 'tagId': ct.tagId})
           .toList(),
       'images': images
-          .map((im) => {
-                'cardId': im.cardId,
-                'filePath': im.filePath,
-                'isPrimary': im.isPrimary,
-                'side': im.side,
-              },)
+          .map(
+            (im) => {
+              'cardId': im.cardId,
+              'filePath': im.filePath,
+              'isPrimary': im.isPrimary,
+              'side': im.side,
+            },
+          )
           .toList(),
     };
   }
@@ -180,13 +184,16 @@ class SettingsLocalDataSource {
       currentValue: Value((c['currentValue'] as num?)?.toDouble()),
       currency: Value(c['currency'] as String? ?? 'USD'),
       wishlistPriority: Value(c['wishlistPriority'] as int?),
-      wishlistTargetPrice: Value((c['wishlistTargetPrice'] as num?)?.toDouble()),
+      wishlistTargetPrice:
+          Value((c['wishlistTargetPrice'] as num?)?.toDouble()),
       language: Value(c['language'] as String?),
       isGraded: Value(c['isGraded'] as bool? ?? false),
       grade: Value(c['grade'] as String?),
       notes: Value(c['notes'] as String?),
-      createdAt: c['createdAt'] as int? ?? DateTime.now().millisecondsSinceEpoch,
-      updatedAt: c['updatedAt'] as int? ?? DateTime.now().millisecondsSinceEpoch,
+      createdAt:
+          c['createdAt'] as int? ?? DateTime.now().millisecondsSinceEpoch,
+      updatedAt:
+          c['updatedAt'] as int? ?? DateTime.now().millisecondsSinceEpoch,
     );
   }
 }

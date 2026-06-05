@@ -45,7 +45,9 @@ class ThemeModeNotifier extends AsyncNotifier<ThemeMode> {
 
   Future<void> setMode(ThemeMode mode) async {
     state = AsyncData(mode);
-    await ref.read(settingsRepositoryProvider).setThemeMode(_themeToString(mode));
+    await ref
+        .read(settingsRepositoryProvider)
+        .setThemeMode(_themeToString(mode));
   }
 }
 

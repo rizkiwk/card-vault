@@ -14,7 +14,8 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeModeProvider).valueOrNull ?? ThemeMode.system;
+    final themeMode =
+        ref.watch(themeModeProvider).valueOrNull ?? ThemeMode.system;
     final currency =
         ref.watch(currencyProvider).valueOrNull ?? AppConstants.defaultCurrency;
 
@@ -58,8 +59,10 @@ class SettingsScreen extends ConsumerWidget {
             onTap: () => _import(context, ref),
           ),
           ListTile(
-            leading: Icon(Icons.delete_forever_outlined,
-                color: Theme.of(context).colorScheme.error,),
+            leading: Icon(
+              Icons.delete_forever_outlined,
+              color: Theme.of(context).colorScheme.error,
+            ),
             title: const Text('Clear all data'),
             onTap: () => _clearAll(context, ref),
           ),
@@ -86,7 +89,10 @@ class SettingsScreen extends ConsumerWidget {
       };
 
   Future<void> _pickTheme(
-      BuildContext context, WidgetRef ref, ThemeMode current,) async {
+    BuildContext context,
+    WidgetRef ref,
+    ThemeMode current,
+  ) async {
     final picked = await showModalBottomSheet<ThemeMode>(
       context: context,
       builder: (_) => Column(
@@ -107,7 +113,10 @@ class SettingsScreen extends ConsumerWidget {
   }
 
   Future<void> _pickCurrency(
-      BuildContext context, WidgetRef ref, String current,) async {
+    BuildContext context,
+    WidgetRef ref,
+    String current,
+  ) async {
     final picked = await showModalBottomSheet<String>(
       context: context,
       builder: (_) => ListView(

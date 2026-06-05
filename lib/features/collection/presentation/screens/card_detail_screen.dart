@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/currency_formatter.dart';
 import '../../domain/entities/card.dart';
 import '../providers/card_providers.dart';
@@ -22,9 +23,9 @@ class CardDetailScreen extends ConsumerWidget {
         actions: [
           if (async.hasValue)
             IconButton(
-              icon: Icon(async.value!.isFavorite
-                  ? Icons.star
-                  : Icons.star_border,),
+              icon: Icon(
+                async.value!.isFavorite ? Icons.star : Icons.star_border,
+              ),
               onPressed: () async {
                 await ref.read(toggleFavoriteProvider).call(cardId);
                 ref.invalidate(cardDetailProvider(cardId));
@@ -121,15 +122,19 @@ class _DetailBody extends StatelessWidget {
             Expanded(
               child: _Stat(
                 label: 'Current',
-                value: CurrencyFormatter.format(card.currentValue,
-                    currency: card.currency,),
+                value: CurrencyFormatter.format(
+                  card.currentValue,
+                  currency: card.currency,
+                ),
               ),
             ),
             Expanded(
               child: _Stat(
                 label: 'Purchased',
-                value: CurrencyFormatter.format(card.purchasePrice,
-                    currency: card.currency,),
+                value: CurrencyFormatter.format(
+                  card.purchasePrice,
+                  currency: card.currency,
+                ),
               ),
             ),
           ],
@@ -139,7 +144,7 @@ class _DetailBody extends StatelessWidget {
           Text(
             'Gain/Loss: ${CurrencyFormatter.formatSigned(gl, currency: card.currency)}',
             style: theme.textTheme.titleMedium?.copyWith(
-              color: gl >= 0 ? Colors.green : Colors.red,
+              color: gl >= 0 ? context.palette.gain : context.palette.loss,
             ),
           ),
         ],
@@ -147,9 +152,7 @@ class _DetailBody extends StatelessWidget {
           const SizedBox(height: 16),
           Wrap(
             spacing: 8,
-            children: card.tags
-                .map((t) => Chip(label: Text('#$t')))
-                .toList(),
+            children: card.tags.map((t) => Chip(label: Text('#$t'))).toList(),
           ),
         ],
         if (card.notes != null && card.notes!.isNotEmpty) ...[

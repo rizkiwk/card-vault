@@ -10,14 +10,18 @@ class TagRepositoryImpl implements TagRepository {
 
   @override
   Stream<List<TagEntity>> watchTags() {
-    return _ds.watchTagsWithCounts().map((rows) => rows
-        .map((r) => TagEntity(
-              id: r.tag.id,
-              name: r.tag.name,
-              color: r.tag.color,
-              cardCount: r.count,
-            ),)
-        .toList(),);
+    return _ds.watchTagsWithCounts().map(
+          (rows) => rows
+              .map(
+                (r) => TagEntity(
+                  id: r.tag.id,
+                  name: r.tag.name,
+                  color: r.tag.color,
+                  cardCount: r.count,
+                ),
+              )
+              .toList(),
+        );
   }
 
   @override
@@ -27,7 +31,9 @@ class TagRepositoryImpl implements TagRepository {
       return Success(id);
     } catch (e) {
       // UNIQUE constraint → duplicate name.
-      return const Err(ValidationFailure('A tag with that name already exists.'));
+      return const Err(
+        ValidationFailure('A tag with that name already exists.'),
+      );
     }
   }
 
@@ -37,7 +43,9 @@ class TagRepositoryImpl implements TagRepository {
       await _ds.rename(id, name);
       return const Success(null);
     } catch (e) {
-      return const Err(ValidationFailure('A tag with that name already exists.'));
+      return const Err(
+        ValidationFailure('A tag with that name already exists.'),
+      );
     }
   }
 

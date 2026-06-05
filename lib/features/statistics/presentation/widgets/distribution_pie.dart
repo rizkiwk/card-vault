@@ -27,9 +27,11 @@ class DistributionPie extends StatelessWidget {
       return SizedBox(
         height: 100,
         child: Center(
-          child: Text('No data yet',
-              style: theme.textTheme.bodyMedium
-                  ?.copyWith(color: theme.colorScheme.outline),),
+          child: Text(
+            'No data yet',
+            style: theme.textTheme.bodyMedium
+                ?.copyWith(color: theme.colorScheme.outline),
+          ),
         ),
       );
     }

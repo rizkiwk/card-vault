@@ -28,17 +28,22 @@ class CardRepositoryImpl implements CardRepository {
       for (final row in rows) {
         final images = await _ds.imagesForCard(row.id);
         final primary = images.isNotEmpty
-            ? (images.firstWhere((i) => i.isPrimary, orElse: () => images.first))
+            ? (images.firstWhere(
+                (i) => i.isPrimary,
+                orElse: () => images.first,
+              ))
             : null;
 
-        result.add(row.toEntity(
-          game: GameType.fromCode(await _ds.gameCodeForId(row.gameId)),
-          setName: await _ds.setNameForId(row.setId),
-          tags: await _ds.tagNamesForCard(row.id),
-          tagIds: await _ds.tagIdsForCard(row.id),
-          imagePaths: images.map((i) => i.filePath).toList(),
-          thumbPath: primary?.thumbPath ?? primary?.filePath,
-        ),);
+        result.add(
+          row.toEntity(
+            game: GameType.fromCode(await _ds.gameCodeForId(row.gameId)),
+            setName: await _ds.setNameForId(row.setId),
+            tags: await _ds.tagNamesForCard(row.id),
+            tagIds: await _ds.tagIdsForCard(row.id),
+            imagePaths: images.map((i) => i.filePath).toList(),
+            thumbPath: primary?.thumbPath ?? primary?.filePath,
+          ),
+        );
       }
       return result;
     });
@@ -76,13 +81,15 @@ class CardRepositoryImpl implements CardRepository {
       // Persist any captured image paths supplied by the controller.
       for (var i = 0; i < card.imagePaths.length; i++) {
         final filePath = card.imagePaths[i];
-        await _ds.addImage(CardImagesCompanion.insert(
-          cardId: id,
-          filePath: filePath,
-          thumbPath: Value(ImageStorageService.thumbPathFor(filePath)),
-          isPrimary: Value(i == 0),
-          createdAt: DateTime.now().millisecondsSinceEpoch,
-        ),);
+        await _ds.addImage(
+          CardImagesCompanion.insert(
+            cardId: id,
+            filePath: filePath,
+            thumbPath: Value(ImageStorageService.thumbPathFor(filePath)),
+            isPrimary: Value(i == 0),
+            createdAt: DateTime.now().millisecondsSinceEpoch,
+          ),
+        );
       }
       await _ds.setCardTags(id, card.tagIds);
       return Success(id);

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/game_types.dart';
 import '../../../../core/widgets/empty_state.dart';
+import '../../../../core/widgets/gradient_widgets.dart';
 import '../../domain/entities/card_filter.dart';
 import '../providers/card_providers.dart';
 import '../widgets/card_tile.dart';
@@ -83,11 +84,13 @@ class CollectionScreen extends ConsumerWidget {
                       selected: filter.game == null,
                       onTap: () => notifier.setGame(null),
                     ),
-                    ...GameType.values.map((g) => _GameChip(
-                          label: g.label,
-                          selected: filter.game == g,
-                          onTap: () => notifier.setGame(g),
-                        ),),
+                    ...GameType.values.map(
+                      (g) => _GameChip(
+                        label: g.label,
+                        selected: filter.game == g,
+                        onTap: () => notifier.setGame(g),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -130,9 +133,9 @@ class CollectionScreen extends ConsumerWidget {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: GradientFab(
         onPressed: () => context.go('/add'),
-        child: const Icon(Icons.add),
+        tooltip: 'Add Card',
       ),
     );
   }

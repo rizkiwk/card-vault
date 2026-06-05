@@ -70,7 +70,10 @@ class TagsManagerScreen extends ConsumerWidget {
   }
 
   Future<void> _editDialog(
-      BuildContext context, WidgetRef ref, TagEntity? existing,) async {
+    BuildContext context,
+    WidgetRef ref,
+    TagEntity? existing,
+  ) async {
     final controller = TextEditingController(text: existing?.name ?? '');
     final name = await showDialog<String>(
       context: context,
@@ -112,14 +115,19 @@ class TagsManagerScreen extends ConsumerWidget {
   }
 
   Future<void> _confirmDelete(
-      BuildContext context, WidgetRef ref, TagEntity tag,) async {
+    BuildContext context,
+    WidgetRef ref,
+    TagEntity tag,
+  ) async {
     final ok = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text('Delete #${tag.name}?'),
-        content: Text(tag.cardCount > 0
-            ? 'This tag is on ${tag.cardCount} card(s). It will be removed from all of them.'
-            : 'This cannot be undone.',),
+        content: Text(
+          tag.cardCount > 0
+              ? 'This tag is on ${tag.cardCount} card(s). It will be removed from all of them.'
+              : 'This cannot be undone.',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),

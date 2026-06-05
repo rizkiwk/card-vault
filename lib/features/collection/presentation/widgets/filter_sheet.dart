@@ -59,11 +59,13 @@ class FilterSheet extends ConsumerWidget {
                   selected: filter.condition == null,
                   onSelected: (_) => notifier.setCondition(null),
                 ),
-                ...CardCondition.values.map((c) => ChoiceChip(
-                      label: Text(c.code),
-                      selected: filter.condition == c,
-                      onSelected: (_) => notifier.setCondition(c),
-                    ),),
+                ...CardCondition.values.map(
+                  (c) => ChoiceChip(
+                    label: Text(c.code),
+                    selected: filter.condition == c,
+                    onSelected: (_) => notifier.setCondition(c),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -77,8 +79,9 @@ class FilterSheet extends ConsumerWidget {
                 hint: const Text('Any set'),
                 items: [
                   const DropdownMenuItem(value: null, child: Text('Any set')),
-                  ...list.map((s) =>
-                      DropdownMenuItem(value: s.id, child: Text(s.name)),),
+                  ...list.map(
+                    (s) => DropdownMenuItem(value: s.id, child: Text(s.name)),
+                  ),
                 ],
                 onChanged: notifier.setSetId,
               ),
@@ -92,11 +95,13 @@ class FilterSheet extends ConsumerWidget {
               data: (list) => Wrap(
                 spacing: 8,
                 children: list
-                    .map((t) => FilterChip(
-                          label: Text('#${t.name}'),
-                          selected: filter.tagIds.contains(t.id),
-                          onSelected: (_) => notifier.toggleTag(t.id!),
-                        ),)
+                    .map(
+                      (t) => FilterChip(
+                        label: Text('#${t.name}'),
+                        selected: filter.tagIds.contains(t.id),
+                        onSelected: (_) => notifier.toggleTag(t.id!),
+                      ),
+                    )
                     .toList(),
               ),
               orElse: () => const SizedBox.shrink(),
@@ -111,9 +116,14 @@ class FilterSheet extends ConsumerWidget {
                   child: TextFormField(
                     initialValue: filter.minValue?.toString(),
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(prefixText: '\$', labelText: 'Min'),
+                    decoration: const InputDecoration(
+                      prefixText: '\$',
+                      labelText: 'Min',
+                    ),
                     onChanged: (v) => notifier.setValueRange(
-                        double.tryParse(v), filter.maxValue,),
+                      double.tryParse(v),
+                      filter.maxValue,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -121,9 +131,14 @@ class FilterSheet extends ConsumerWidget {
                   child: TextFormField(
                     initialValue: filter.maxValue?.toString(),
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(prefixText: '\$', labelText: 'Max'),
+                    decoration: const InputDecoration(
+                      prefixText: '\$',
+                      labelText: 'Max',
+                    ),
                     onChanged: (v) => notifier.setValueRange(
-                        filter.minValue, double.tryParse(v),),
+                      filter.minValue,
+                      double.tryParse(v),
+                    ),
                   ),
                 ),
               ],

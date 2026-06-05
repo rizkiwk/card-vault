@@ -79,11 +79,13 @@ class AppDatabase extends _$AppDatabase {
       b.insertAll(
         games,
         seed
-            .map((g) => GamesCompanion.insert(
-                  code: g.code,
-                  name: g.name,
-                  sortOrder: Value(g.order),
-                ),)
+            .map(
+              (g) => GamesCompanion.insert(
+                code: g.code,
+                name: g.name,
+                sortOrder: Value(g.order),
+              ),
+            )
             .toList(),
       );
     });

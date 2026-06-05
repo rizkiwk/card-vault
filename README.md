@@ -18,6 +18,10 @@ CardVault is a Flutter application built with **Clean Architecture**, **Riverpod
 | 06 | [Roadmap](docs/06-roadmap.md) | Phased delivery plan & milestones |
 | 07 | [QA Checklist](docs/07-qa-checklist.md) | Functional, edge-case & device test matrix |
 | 08 | [Google Play Compliance](docs/08-google-play-compliance.md) | Store listing, policy & release checklist |
+| 09 | [Setup & Codegen](docs/09-setup-and-codegen.md) | Build steps, codegen, phase status, decisions |
+| 10 | [Release Guide](docs/10-release-guide.md) | Keystore, signed `.aab`, Play submission order |
+| 11 | [Store Listing](docs/11-store-listing.md) | Title, descriptions, ASO, graphics specs |
+| — | [Privacy Policy](docs/PRIVACY_POLICY.md) | Offline-first policy (host at a public URL) |
 
 ---
 

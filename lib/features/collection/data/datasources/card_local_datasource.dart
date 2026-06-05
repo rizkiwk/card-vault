@@ -33,8 +33,9 @@ class CardLocalDataSource {
     }
     if (f.search.trim().isNotEmpty) {
       final term = '%${f.search.trim()}%';
-      query.where((t) =>
-          t.name.like(term) | t.cardNumber.like(term) | t.notes.like(term),);
+      query.where(
+        (t) => t.name.like(term) | t.cardNumber.like(term) | t.notes.like(term),
+      );
     }
     if (f.game != null) {
       // Subquery: card.gameId IN (SELECT id FROM games WHERE code = ?)
@@ -70,7 +71,8 @@ class CardLocalDataSource {
         .getSingleOrNull();
   }
 
-  Future<int> insert(CardRowsCompanion data) => _db.into(_db.cardRows).insert(data);
+  Future<int> insert(CardRowsCompanion data) =>
+      _db.into(_db.cardRows).insert(data);
 
   Future<void> updateCard(CardRowsCompanion data) =>
       (_db.update(_db.cardRows)..where((t) => t.id.equals(data.id.value)))
@@ -82,7 +84,8 @@ class CardLocalDataSource {
   Future<void> deleteCard(int id) {
     return _db.transaction(() async {
       await (_db.delete(_db.cardTags)..where((t) => t.cardId.equals(id))).go();
-      await (_db.delete(_db.cardImages)..where((t) => t.cardId.equals(id))).go();
+      await (_db.delete(_db.cardImages)..where((t) => t.cardId.equals(id)))
+          .go();
       await (_db.delete(_db.cardRows)..where((t) => t.id.equals(id))).go();
     });
   }
@@ -114,14 +117,15 @@ class CardLocalDataSource {
   }
 
   Future<String> gameCodeForId(int id) async {
-    final row =
-        await (_db.select(_db.games)..where((g) => g.id.equals(id))).getSingle();
+    final row = await (_db.select(_db.games)..where((g) => g.id.equals(id)))
+        .getSingle();
     return row.code;
   }
 
   Future<String?> setNameForId(int? setId) async {
     if (setId == null) return null;
-    final row = await (_db.select(_db.cardSets)..where((s) => s.id.equals(setId)))
+    final row = await (_db.select(_db.cardSets)
+          ..where((s) => s.id.equals(setId)))
         .getSingleOrNull();
     return row?.name;
   }
@@ -156,7 +160,8 @@ class CardLocalDataSource {
 
   /// Replaces all tag associations for [cardId] with [tagIds].
   Future<void> setCardTags(int cardId, List<int> tagIds) async {
-    await (_db.delete(_db.cardTags)..where((t) => t.cardId.equals(cardId))).go();
+    await (_db.delete(_db.cardTags)..where((t) => t.cardId.equals(cardId)))
+        .go();
     if (tagIds.isEmpty) return;
     await _db.batch((b) {
       b.insertAll(
@@ -185,7 +190,8 @@ class CardLocalDataSource {
     return row.read(exp) ?? 0;
   }
 
-  Future<List<({String gameCode, int count, int copies})>> countsPerGame() async {
+  Future<List<({String gameCode, int count, int copies})>>
+      countsPerGame() async {
     final count = _db.cardRows.id.count();
     final copies = _db.cardRows.quantity.sum();
     final query = _db.selectOnly(_db.cardRows).join([
@@ -196,11 +202,13 @@ class CardLocalDataSource {
       ..groupBy([_db.games.id]);
     final rows = await query.get();
     return rows
-        .map((r) => (
-              gameCode: r.read(_db.games.code)!,
-              count: r.read(count) ?? 0,
-              copies: r.read(copies) ?? 0,
-            ),)
+        .map(
+          (r) => (
+            gameCode: r.read(_db.games.code)!,
+            count: r.read(count) ?? 0,
+            copies: r.read(copies) ?? 0,
+          ),
+        )
         .toList();
   }
 
@@ -230,8 +238,9 @@ class CardLocalDataSource {
     final exp = _db.cardRows.setId.count(distinct: true);
     final query = _db.selectOnly(_db.cardRows)
       ..addColumns([exp])
-      ..where(_db.cardRows.status.equals('owned') &
-          _db.cardRows.setId.isNotNull(),);
+      ..where(
+        _db.cardRows.status.equals('owned') & _db.cardRows.setId.isNotNull(),
+      );
     return (await query.getSingle()).read(exp) ?? 0;
   }
 
@@ -247,10 +256,12 @@ class CardLocalDataSource {
       ..groupBy([_db.games.id]);
     final rows = await query.get();
     return rows
-        .map((r) => (
-              gameCode: r.read(_db.games.code)!,
-              value: r.read(value) ?? 0,
-            ),)
+        .map(
+          (r) => (
+            gameCode: r.read(_db.games.code)!,
+            value: r.read(value) ?? 0,
+          ),
+        )
         .toList();
   }
 
@@ -281,7 +292,8 @@ class CardLocalDataSource {
   }
 
   Future<List<({int id, String name, double value})>> topValuable(
-      int limit,) async {
+    int limit,
+  ) async {
     final query = _db.select(_db.cardRows)
       ..where((t) => t.status.equals('owned') & t.currentValue.isNotNull())
       ..orderBy([(t) => OrderingTerm.desc(t.currentValue)])

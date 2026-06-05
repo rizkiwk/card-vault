@@ -103,9 +103,8 @@ void _resizeAndWrite(_ResizeArgs args) {
     width: decoded.width >= decoded.height
         ? AppConstants.thumbnailDimension
         : null,
-    height: decoded.height > decoded.width
-        ? AppConstants.thumbnailDimension
-        : null,
+    height:
+        decoded.height > decoded.width ? AppConstants.thumbnailDimension : null,
   );
   File(args.thumbPath).writeAsBytesSync(img.encodeJpg(thumb, quality: 80));
 }

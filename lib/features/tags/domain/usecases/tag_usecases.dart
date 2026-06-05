@@ -15,7 +15,9 @@ class CreateTag {
 
   Future<Result<int>> call(String name, {String? color}) {
     if (name.trim().isEmpty) {
-      return Future.value(const Err(ValidationFailure('Tag name is required.')));
+      return Future.value(
+        const Err(ValidationFailure('Tag name is required.')),
+      );
     }
     return _repo.create(name.trim(), color: color);
   }
@@ -26,7 +28,9 @@ class RenameTag {
   final TagRepository _repo;
   Future<Result<void>> call(int id, String name) {
     if (name.trim().isEmpty) {
-      return Future.value(const Err(ValidationFailure('Tag name is required.')));
+      return Future.value(
+        const Err(ValidationFailure('Tag name is required.')),
+      );
     }
     return _repo.rename(id, name.trim());
   }

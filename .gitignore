@@ -43,3 +43,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android Gradle build output (build reports, artifacts)
+android/build/
+
+# Signing secrets — NEVER commit these
+android/key.properties
+*.jks
+*.keystore
+
+# Screenshot raw captures (temp from emulator)
+docs/screenshot/raw/
+
+# Tool scripts — internal only, not for public repo
+tool/crop_shots.dart
+tool/update_screenshot_card_art.dart

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/game_types.dart';
+import '../../../../core/widgets/gradient_widgets.dart';
 import '../../../collection/domain/entities/card.dart';
 import '../../../collection/presentation/providers/card_providers.dart';
 import '../../../settings/presentation/providers/settings_providers.dart';
@@ -59,16 +60,15 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
       id: widget.editId,
       game: _game,
       name: _name.text.trim(),
-      cardNumber: _cardNumber.text.trim().isEmpty ? null : _cardNumber.text.trim(),
+      cardNumber:
+          _cardNumber.text.trim().isEmpty ? null : _cardNumber.text.trim(),
       rarity: _rarity.text.trim().isEmpty ? null : _rarity.text.trim(),
       condition: _condition,
       quantity: _quantity,
       status: _status,
       purchasePrice: double.tryParse(_purchase.text),
       currentValue: double.tryParse(_value.text),
-      currency: _currency ??
-          ref.read(currencyProvider).valueOrNull ??
-          'USD',
+      currency: _currency ?? ref.read(currencyProvider).valueOrNull ?? 'USD',
       notes: _notes.text.trim().isEmpty ? null : _notes.text.trim(),
       tagIds: _tagIds,
       imagePaths: _imagePath != null ? [_imagePath!] : const [],
@@ -94,7 +94,8 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
   Widget build(BuildContext context) {
     // Pre-fill when editing.
     if (widget.editId != null && !_loaded) {
-      final existing = ref.watch(cardDetailProvider(widget.editId!)).valueOrNull;
+      final existing =
+          ref.watch(cardDetailProvider(widget.editId!)).valueOrNull;
       if (existing != null) {
         _name.text = existing.name;
         _cardNumber.text = existing.cardNumber ?? '';
@@ -106,7 +107,8 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
         _condition = existing.condition;
         _status = existing.status;
         _quantity = existing.quantity;
-        _imagePath = existing.imagePaths.isNotEmpty ? existing.imagePaths.first : null;
+        _imagePath =
+            existing.imagePaths.isNotEmpty ? existing.imagePaths.first : null;
         _tagIds = List<int>.from(existing.tagIds);
         _currency = existing.currency;
         _loaded = true;
@@ -170,8 +172,9 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
               initialValue: _condition,
               decoration: const InputDecoration(labelText: 'Condition *'),
               items: CardCondition.values
-                  .map((c) =>
-                      DropdownMenuItem(value: c, child: Text(c.label)),)
+                  .map(
+                    (c) => DropdownMenuItem(value: c, child: Text(c.label)),
+                  )
                   .toList(),
               onChanged: (c) => setState(() => _condition = c!),
             ),
@@ -182,11 +185,13 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
                 const Spacer(),
                 IconButton(
                   icon: const Icon(Icons.remove_circle_outline),
-                  onPressed: _quantity > 0
-                      ? () => setState(() => _quantity--)
-                      : null,
+                  onPressed:
+                      _quantity > 0 ? () => setState(() => _quantity--) : null,
                 ),
-                Text('$_quantity', style: Theme.of(context).textTheme.titleMedium),
+                Text(
+                  '$_quantity',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 IconButton(
                   icon: const Icon(Icons.add_circle_outline),
                   onPressed: () => setState(() => _quantity++),
@@ -224,7 +229,8 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
             const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerLeft,
-              child: Text('Tags', style: Theme.of(context).textTheme.titleSmall),
+              child:
+                  Text('Tags', style: Theme.of(context).textTheme.titleSmall),
             ),
             const SizedBox(height: 8),
             TagSelector(
@@ -236,21 +242,18 @@ class _AddCardScreenState extends ConsumerState<AddCardScreen> {
               segments: const [
                 ButtonSegment(value: CardStatus.owned, label: Text('Owned')),
                 ButtonSegment(
-                    value: CardStatus.wishlist, label: Text('Wishlist'),),
+                  value: CardStatus.wishlist,
+                  label: Text('Wishlist'),
+                ),
               ],
               selected: {_status},
               onSelectionChanged: (s) => setState(() => _status = s.first),
             ),
             const SizedBox(height: 24),
-            FilledButton(
+            GradientButton(
               onPressed: saving ? null : _save,
-              child: saving
-                  ? const SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Text('Save Card'),
+              icon: Icons.check_rounded,
+              label: saving ? 'Saving…' : 'Save Card',
             ),
           ],
         ),
@@ -290,7 +293,11 @@ class _ImagePicker extends StatelessWidget {
           ),
           clipBehavior: Clip.antiAlias,
           child: path != null && File(path!).existsSync()
-              ? Image.file(File(path!), fit: BoxFit.cover, width: double.infinity)
+              ? Image.file(
+                  File(path!),
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                )
               : const Center(child: Icon(Icons.add_a_photo_outlined, size: 48)),
         ),
         const SizedBox(height: 8),

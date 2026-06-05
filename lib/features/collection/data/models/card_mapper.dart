@@ -47,7 +47,11 @@ extension CardRowMapper on CardRow {
 
 /// Builds a drift insert/update companion from a domain entity.
 /// [gameId] must be resolved from the entity's [GameType] before calling.
-CardRowsCompanion cardCompanion(CardEntity card, int gameId, {bool forInsert = false}) {
+CardRowsCompanion cardCompanion(
+  CardEntity card,
+  int gameId, {
+  bool forInsert = false,
+}) {
   final now = DateTime.now().millisecondsSinceEpoch;
   return CardRowsCompanion(
     id: card.id == null ? const Value.absent() : Value(card.id!),

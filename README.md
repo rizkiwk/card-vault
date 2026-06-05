@@ -4,27 +4,6 @@
 
 CardVault is a Flutter application built with **Clean Architecture**, **Riverpod**, and the **Repository Pattern**, backed by a local **SQLite** database. No accounts, no marketplace, no payments — just a fast, private, fully-offline vault for collectors.
 
----
-
-## 📚 Documentation Index
-
-| # | Document | Description |
-|---|----------|-------------|
-| 01 | [Product Requirements (PRD)](docs/01-PRD.md) | Vision, personas, scope, functional & non-functional requirements |
-| 02 | [Database Schema](docs/02-database-schema.md) | SQLite tables, relations, indexes, migrations |
-| 03 | [Folder Structure](docs/03-folder-structure.md) | Clean Architecture project layout |
-| 04 | [UI Wireframes](docs/04-ui-wireframes.md) | ASCII wireframes for all 7 screens |
-| 05 | [Flutter Architecture](docs/05-architecture.md) | Layers, Riverpod providers, data flow |
-| 06 | [Roadmap](docs/06-roadmap.md) | Phased delivery plan & milestones |
-| 07 | [QA Checklist](docs/07-qa-checklist.md) | Functional, edge-case & device test matrix |
-| 08 | [Google Play Compliance](docs/08-google-play-compliance.md) | Store listing, policy & release checklist |
-| 09 | [Setup & Codegen](docs/09-setup-and-codegen.md) | Build steps, codegen, phase status, decisions |
-| 10 | [Release Guide](docs/10-release-guide.md) | Keystore, signed `.aab`, Play submission order |
-| 11 | [Store Listing](docs/11-store-listing.md) | Title, descriptions, ASO, graphics specs |
-| — | [Privacy Policy](docs/PRIVACY_POLICY.md) | Offline-first policy (host at a public URL) |
-
----
-
 ## 🚀 Tech Stack
 
 | Layer | Technology |

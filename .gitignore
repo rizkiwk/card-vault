@@ -51,6 +51,7 @@ android/build/
 android/key.properties
 *.jks
 *.keystore
+SECRETS.md
 
 # Screenshot raw captures (temp from emulator)
 docs/screenshot/raw/

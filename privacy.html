@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – CardVault</title>
+  <meta name="description" content="CardVault Privacy Policy — your card collection data never leaves your device." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo: #4254FF;
+      --violet: #7A3DFF;
+      --accent: #00D1B2;
+      --surface: #F8F8FF;
+      --on-surface: #1A1A2E;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+      --radius: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --surface: #0F0F1A;
+        --on-surface: #F0F0FF;
+        --muted: #9CA3AF;
+        --border: #1F1F33;
+      }
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.4px;
+    }
+
+    header h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.6px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.82);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Layout ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,209,178,0.12);
+      color: #009E87;
+      border: 1px solid rgba(0,209,178,0.35);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .badge { color: #00D1B2; }
+    }
+
+    .badge::before { content: "✓"; }
+
+    /* ── Sections ── */
+    section { margin-bottom: 40px; }
+
+    section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    section h2 .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    p { color: var(--muted); margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li {
+      color: var(--muted);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--indigo);
+      font-weight: 700;
+    }
+
+    strong { color: var(--on-surface); font-weight: 600; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* ── Highlight box ── */
+    .highlight {
+      border-left: 3px solid var(--indigo);
+      background: rgba(66, 84, 255, 0.06);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    .highlight p { color: var(--on-surface); margin: 0; }
+
+    /* ── Contact card ── */
+    .contact-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-card .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--indigo), var(--violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .contact-card a {
+      color: var(--indigo);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-card a:hover { text-decoration: underline; }
+    .contact-card .contact-label { font-size: 13px; color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--indigo); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">
+    <svg class="logo-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Two fanned cards -->
+      <rect x="6" y="10" width="22" height="30" rx="3" fill="rgba(255,255,255,0.25)" transform="rotate(-8 6 10)"/>
+      <rect x="12" y="8" width="22" height="30" rx="3" fill="rgba(255,255,255,0.18)" transform="rotate(5 12 8)"/>
+      <!-- Shield -->
+      <path d="M22 6L34 10V22C34 29 22 38 22 38C22 38 10 29 10 22V10L22 6Z" fill="rgba(255,255,255,0.90)"/>
+      <!-- V -->
+      <path d="M16 15L22 27L28 15" stroke="#4254FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="logo-text">CardVault</span>
+  </div>
+  <h1>Privacy Policy</h1>
+  <p>Your collection data is yours alone — private, local, and always under your control.</p>
+</header>
+
+<main>
+
+  <div class="badge">100% Offline · No data collection</div>
+
+  <div class="highlight">
+    <p><strong>Short version:</strong> CardVault stores everything exclusively on your device. We do not collect, transmit, or share any personal data. There is no backend, no analytics, and no account system.</p>
+  </div>
+
+  <p style="color: var(--muted); font-size: 14px; margin-bottom: 40px;">
+    <strong>Effective date:</strong> June 5, 2026 &nbsp;·&nbsp; <strong>App version:</strong> 1.0
+  </p>
+
+  <!-- 1 -->
+  <section>
+    <h2><span class="icon">📋</span> 1. Information We Collect</h2>
+    <p><strong>We collect nothing.</strong> CardVault does not collect, process, or transmit any personal information. The app operates fully offline and has no internet permission in its Android manifest.</p>
+    <p>All data you enter — card names, prices, photos, notes, tags — is stored exclusively in a local SQLite database and the private file directory on your device.</p>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2><span class="icon">📱</span> 2. Data Stored on Your Device</h2>
+    <p>CardVault stores the following data locally on your device only:</p>
+    <ul>
+      <li>Card details (name, game, set, condition, rarity, value, quantity)</li>
+      <li>Card photos you capture or import from your gallery</li>
+      <li>Tags, wishlists, and notes you create</li>
+      <li>App preferences (currency, theme)</li>
+    </ul>
+    <p>This data is stored in your device's private app storage and is not accessible to other apps or to us.</p>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2><span class="icon">📷</span> 3. Camera & Photo Permissions</h2>
+    <p>CardVault requests the following permissions solely to let you photograph your cards:</p>
+    <ul>
+      <li><strong>CAMERA</strong> — to take photos of cards directly in the app</li>
+      <li><strong>READ_MEDIA_IMAGES</strong> — to import existing photos from your gallery</li>
+    </ul>
+    <p>Photos are compressed and saved to your device's private app directory. They are never uploaded to any server.</p>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <h2><span class="icon">🌐</span> 4. Internet Access</h2>
+    <p>CardVault does <strong>not</strong> declare the <code>INTERNET</code> permission. The app is physically incapable of making any network requests. No data can leave your device through the app.</p>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2><span class="icon">💾</span> 5. Backup & Export</h2>
+    <p>CardVault includes an optional backup feature that packages your collection into a <code>.cardvault</code> file (a zip archive of your database and card images). This file is created and stored locally or shared to a destination you choose (e.g. your cloud storage app, email).</p>
+    <p>We never receive or have access to this backup file. You are in full control of where it goes.</p>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2><span class="icon">🔒</span> 6. Third-Party Services</h2>
+    <p>CardVault does <strong>not</strong> integrate with any third-party services, SDKs, analytics, advertising networks, or crash reporting tools. There are no trackers of any kind in the app.</p>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <h2><span class="icon">👶</span> 7. Children's Privacy</h2>
+    <p>CardVault does not collect any personal data from any user, including children under 13. The app is safe for all ages from a data privacy standpoint.</p>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <h2><span class="icon">🔄</span> 8. Changes to This Policy</h2>
+    <p>If we make material changes to this privacy policy, we will update the effective date above and publish the revised policy at this URL. Continued use of the app after any update constitutes acceptance of the updated policy.</p>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <h2><span class="icon">✉️</span> 9. Contact</h2>
+    <p>If you have any questions about this privacy policy, please reach out:</p>
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Developer email</div>
+        <a href="mailto:01.ads.org@gmail.com">01.ads.org@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <p style="font-size: 14px; text-align: center;">
+    CardVault is built with privacy by design — no servers, no accounts, no tracking.
+  </p>
+
+</main>
+
+<footer>
+  <p>© 2026 CardVault · <a href="https://github.com/rizkiwk/card-vault">GitHub</a> · <a href="index.html">Home</a></p>
+</footer>
+
+</body>
+</html>

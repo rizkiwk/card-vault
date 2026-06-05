@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardVault — Offline Card Collection Manager</title>
+  <meta name="description" content="CardVault is a private, offline-first trading card collection manager for Pokémon, One Piece, Yu-Gi-Oh!, MTG and Sports cards." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo: #4254FF;
+      --violet: #7A3DFF;
+      --accent: #00D1B2;
+      --surface: #F8F8FF;
+      --on-surface: #1A1A2E;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+      --radius: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --surface: #0F0F1A;
+        --on-surface: #F0F0FF;
+        --muted: #9CA3AF;
+        --border: #1F1F33;
+      }
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 100%);
+      padding: 72px 24px 64px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .logo-icon {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.28));
+    }
+
+    .logo-name {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #fff;
+    }
+
+    .logo-name span {
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      max-width: 480px;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--indigo);
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── Features ── */
+    .features {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--indigo); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="logo-lockup">
+    <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="18" width="40" height="54" rx="5" fill="rgba(255,255,255,0.22)" transform="rotate(-8 10 18)"/>
+      <rect x="22" y="14" width="40" height="54" rx="5" fill="rgba(255,255,255,0.16)" transform="rotate(6 22 14)"/>
+      <path d="M40 10L62 18V40C62 53 40 70 40 70C40 70 18 53 18 40V18L40 10Z" fill="rgba(255,255,255,0.92)"/>
+      <path d="M30 28L40 50L50 28" stroke="#4254FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="logo-name"><span>Card</span>Vault</div>
+  </div>
+
+  <p class="tagline">The offline-first vault for serious trading card collectors. No cloud, no accounts, just your collection.</p>
+
+  <div class="pills">
+    <span class="pill">Pokémon</span>
+    <span class="pill">One Piece</span>
+    <span class="pill">Yu-Gi-Oh!</span>
+    <span class="pill">MTG</span>
+    <span class="pill">Sports</span>
+  </div>
+
+  <div class="cta-row">
+    <a href="https://github.com/rizkiwk/card-vault" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      View on GitHub
+    </a>
+    <a href="privacy.html" class="btn-ghost">
+      🔒 Privacy Policy
+    </a>
+  </div>
+</section>
+
+<div class="features">
+  <div class="feature-card">
+    <div class="feature-icon">📴</div>
+    <h3>100% Offline</h3>
+    <p>No internet permission. All data lives on your device in a local SQLite database.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📷</div>
+    <h3>Photo Capture</h3>
+    <p>Photograph your cards in-app or import from gallery. Auto-compressed thumbnails.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📊</div>
+    <h3>Value Tracking</h3>
+    <p>Track purchase price vs. current value. See gain/loss charts by game and rarity.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">⭐</div>
+    <h3>Wishlist</h3>
+    <p>Set target prices for cards you're chasing and mark them as owned when you get them.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🏷️</div>
+    <h3>Tags & Filters</h3>
+    <p>Organize with custom tags. Filter and sort by game, condition, rarity, and more.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">💾</div>
+    <h3>Backup & Restore</h3>
+    <p>Export your entire collection to a <code>.cardvault</code> bundle. Restore on any device.</p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 CardVault &nbsp;·&nbsp; <a href="https://github.com/rizkiwk/card-vault">GitHub</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="mailto:01.ads.org@gmail.com">Contact</a></p>
+</footer>
+
+</body>
+</html>

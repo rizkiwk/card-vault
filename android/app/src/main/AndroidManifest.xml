@@ -4,16 +4,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
-    <!--
-      Gallery: on Android 13+ we use the system Photo Picker, which needs NO
-      runtime permission. READ_MEDIA_IMAGES is declared only for legacy access
-      and capped so it is not requested on Android 13+ (maxSdkVersion=32).
-    -->
-    <uses-permission
-        android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+    <!-- Gallery selection uses the system Photo Picker; no media-read
+         permission is needed. -->
 
     <application
         android:label="CardVault"
